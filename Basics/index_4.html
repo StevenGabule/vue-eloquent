@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic in Vue 2</title>
+</head>
+<body>
+
+    <div id="root">
+        <!-- <h1>{{ ReverseMessage }}</h1> -->
+        <h2>All Tasks</h2>
+        <ul>
+            <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>   -->
+            <li v-for="task in tasks"v-text="task.description"></li>  
+        </ul>
+        
+        <h2>All Completed Tasks</h2>
+        <ul>
+            <li v-for="task in completeTasks"v-text="task.description" @click="task.completed = false"></li>  
+        </ul>
+
+        <h2>All uncompleted Task</h2>
+        <ul>
+           <li v-for="task in uncompleteTasks"v-text="task.description" @click="task.completed = true"></li>  
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    new Vue({
+        el: '#root',
+        data: {
+          message: "Programmer of the Hello World",
+          tasks: [
+              { description: 'Go to the store', completed: true},
+              { description: 'Finish screen cast', completed: false},
+              { description: 'Make donation', completed: false},
+              { description: 'Clear inbox', completed: false},
+              { description: 'Make dinner', completed: false},
+              { description: 'Clean room', completed: true},
+          ]
+        },
+        computed: {
+            ReverseMessage() {
+                return this.message.split('').reverse().join('');
+            },
+            completeTasks() {
+                return this.tasks.filter(task => task.completed); 
+            },
+            uncompleteTasks() {
+                return this.tasks.filter(task => !task.completed); 
+            },
+            
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic in Vue 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <style>
+        body { padding-top: 40px; }
+    </style>
+
+</head>
+<body>
+
+    <div id="root" class="container">
+
+        <modal v-if="showModal" @close="showModal = false">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure corrupti quo illo dolor mollitia dolorem, quibusdam ducimus cumque quae corporis, a consequuntur, dignissimos voluptate. At nesciunt quas dolore dicta quis?</p>
+        </modal>
+
+        <button @click="showModal = true">Show Modal</button>
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+
+        Vue.component('modal', {
+            props: ['title', 'body'],
+
+            data() {
+                return {
+                    isVisible: true,
+                }
+            },
+
+            template: `
+            <div class="modal is-active">
+
+                <div class="modal-background"></div>
+
+                <div class="modal-content">
+                    <div class="box">
+                        <slot></slot>
+                    </div>
+                </div>
+
+                <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+
+            </div>`,
+           
+        });
+
+        new Vue({
+            el: '#root',
+            data: {
+                showModal: false
+            }
+        })
+
+    </script>
+</body>
+</html>

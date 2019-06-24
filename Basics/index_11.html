@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic in Vue 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <style>
+        body { padding-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div id="root" class="container">
+        <progress-view inline-template>
+           <div>
+                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, iste. {{ completeRate }}%</h1>
+                <p><button @click="completeRate +=10">Update</button></p>
+           </div>
+        </progress-view>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        Vue.component('progress-view', {
+
+            data() {
+                return { completeRate: 50}
+            }
+        });
+       
+        new Vue({
+            el: '#root',
+            data: {},
+        })
+
+    </script>
+</body>
+</html>
