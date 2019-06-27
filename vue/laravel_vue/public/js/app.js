@@ -40,9 +40,10 @@ class Form {
     }
 
     data() {
-        let data = Object.assign({}, this);
-        delete data.originalData;
-        delete data.errors;
+        let data = {};
+        for (let property in this.originalData) {
+            data[property] = this[property];
+        }
         return data;
     }
 
