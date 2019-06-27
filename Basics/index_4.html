@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Basic in Vue 2</title>
+    <style>
+        li.underline {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,17 +18,17 @@
         <h2>All Tasks</h2>
         <ul>
             <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>   -->
-            <li v-for="task in tasks"v-text="task.description"></li>  
+            <li v-for="task in tasks" :class="{ 'underline' : task.completed }" v-text="task.description"></li>  
         </ul>
         
         <h2>All Completed Tasks</h2>
         <ul>
-            <li v-for="task in completeTasks"v-text="task.description" @click="task.completed = false"></li>  
+            <li v-for="task in completeTasks" v-text="task.description" @click="task.completed = false"></li>  
         </ul>
 
         <h2>All uncompleted Task</h2>
         <ul>
-           <li v-for="task in uncompleteTasks"v-text="task.description" @click="task.completed = true"></li>  
+           <li v-for="task in uncompleteTasks" v-text="task.description" @click="task.completed = true"></li>  
         </ul>
 
     </div>

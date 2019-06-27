@@ -11,6 +11,7 @@
     </style>
 
 </head>
+
 <body>
 
     <div id="root" class="container">
@@ -37,19 +38,23 @@
             },
 
             template: `
-            <div class="modal is-active">
+                        <div class="modal is-active">
 
-                <div class="modal-background"></div>
+                            <div class="modal-background"></div>
 
-                <div class="modal-content">
-                    <div class="box">
-                        <slot></slot>
-                    </div>
-                </div>
+                            <div class="modal-content">
+                                
+                                <div class="box">
 
-                <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+                                    <slot></slot>
 
-            </div>`,
+                                </div>
+
+                            </div>
+
+                            <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+
+                        </div>`,
            
         });
 
@@ -58,7 +63,7 @@
             data: {
                 showModal: false
             }
-        })
+        });
 
     </script>
 </body>

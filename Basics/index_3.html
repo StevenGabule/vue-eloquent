@@ -6,25 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Basic in Vue 2</title>
     <style>
-    .color-red {
-        color: red;
-    }
-    .color-blue {
-        color: blue;
-    }
+    .color-red { color: red; }
+    .color-blue { color: blue; }
     .is-loading { color: red; }
     </style>
 </head>
 <body>
 
     <div id="root">
+
         <h1 :class="className">Hello</h1>
-        <button :title="title" :class="{ 'is-loading' : isLoading }" @click="toggleClass">Hover over me!</button>
+
+        <button :title="title" :class="{ 'is-loading' : isLoading }" @click="toggleClass">Click over me!</button>
+
         <button :disabled="isDisabled" @click="btnDisabled">Click to disable</button>
+
     </div>
 
     <script src="https://unpkg.com/vue"></script>
     <script>
+
     new Vue({
         el: '#root',
         data: {
@@ -36,7 +37,7 @@
 
         methods: {
             toggleClass() {
-                this.isLoading = true;
+                this.isLoading = (this.isLoading == false) ? true : false;
             },
             btnDisabled() {
                 this.isDisabled = true;

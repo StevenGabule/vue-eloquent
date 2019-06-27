@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Basic in Vue 2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <style>
+        li.underline {
+            text-decoration: line-through;
+        }
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,7 +28,7 @@
         Vue.component('task-list', {
             template: `
                     <div>
-                        <task v-for="task in tasks">{{ task.task }}</task>
+                        <task v-for="task in tasks" :class="{'underline' : task.complete}">{{ task.task }}</task>
                     </div>`,
             data() {
                 return {

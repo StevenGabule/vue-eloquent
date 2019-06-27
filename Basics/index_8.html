@@ -45,21 +45,15 @@
                                 <slot></slot>
                             </div>
                         </div>`,
-            data() {
-              return { tabs: [] }  
-            },
-          
-            created() {
-                this.tabs = this.$children;
-            },
-
+            data() { return { tabs: [] } }, 
+            created() { this.tabs = this.$children; },
             methods: {
                 selectTab(selectedTab) {
                    this.tabs.forEach(tab => {
                        tab.isActive = (tab.name == selectedTab.name);
                    });
                 }
-            }
+            } 
         });
 
         Vue.component('tab', {
@@ -73,20 +67,15 @@
             },
 
             data() {
-                return {
-                    isActive: false
-                };
+                return { isActive: false };
             },
 
             computed: {
-                href() {
-                    return `#` + this.name.toLowerCase().replace(/ /g, '-');
-                }
+                href() { return `#` + this.name.toLowerCase().replace(/ /g, '-'); }
             },
 
-            mounted() {
-                this.isActive = this.selected;
-            }
+            mounted() { this.isActive = this.selected; }
+            
         });
 
         new Vue({

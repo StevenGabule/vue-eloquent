@@ -13,12 +13,19 @@
 <body>
 
     <div id="root" class="container">
+        
         <progress-view inline-template>
+            
            <div>
+               
                 <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, iste. {{ completeRate }}%</h1>
+                
                 <p><button @click="completeRate +=10">Update</button></p>
+                
            </div>
+           
         </progress-view>
+        
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -29,6 +36,7 @@
             data() {
                 return { completeRate: 50}
             }
+
         });
        
         new Vue({
