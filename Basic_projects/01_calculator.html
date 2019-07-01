@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Basic Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+    <div id="app">
+       <div class="container">
+           <div class="row">
+                <div class="col-lg-12">
+                    
+                    <input type="text" class="form-control form-control-lg" v-model="result" readonly>
+
+                    <p>{{ log }}</p>
+
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(7)">7</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(8)">8</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(9)">9</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateOperator('+')">+</button><br>
+
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(4)">4</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(5)">5</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(6)">6</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateOperator('-')">—</button><br>
+
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(3)">3</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(2)">2</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(1)">1</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateOperator('/')">÷</button><br>
+
+                    <button class="btn btn-light border text-muted m-1" @click="calculate(0)">0</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateClear()">C</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateEqual()">=</button>
+                    <button class="btn btn-light border text-muted m-1" @click="calculateOperator('*')">X</button>
+
+                </div>  
+           </div>
+       </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: { 
+                result: '',
+                firstNumber: 0,
+                secondNumber: 0,
+                operator: '',
+                returnResult: 0,
+                log: 0
+            },
+            computed: {
+               
+            },
+            
+            methods: {
+                calculate(value) {
+                    this.result = this.result.concat(String(value).toString());   
+                },
+
+                calculateResult(firstnumber, secondnumber, operation) {
+                    if (operation == '+') this.returnResult = parseFloat(firstnumber) + parseFloat(secondnumber);
+                    if (operation == '-') this.returnResult = parseFloat(firstnumber) - parseFloat(secondnumber);
+                    if (operation == '/') this.returnResult = parseFloat(firstnumber) / parseFloat(secondnumber);
+                    if (operation == '*') this.returnResult = parseFloat(firstnumber) * parseFloat(secondnumber);
+                    return this.returnResult;
+               },
+
+                calculateOperator(symbol) {
+                    if (this.firstNumber != 0) {
+                        this.secondNumber = this.result;
+                        // this.returnResult = eval(this.firstNumber + this.operator + this.secondNumber);
+                        this.result = this.calculateResult(this.firstNumber, this.secondNumber, this.operator); 
+                        this.firstNumber = this.returnResult; 
+                        this.secondNumber = 0; 
+                        this.returnResult = 0;
+                        this.operator = symbol;
+                        this.log = this.result;
+                        this.result = '';
+                    }  else {
+                        this.firstNumber = this.result;
+                        this.operator = symbol;
+                        this.result = '';
+                        this.returnResult = 0;
+                    }
+                },
+
+                calculateEqual() {
+                    this.secondNumber = this.result;
+                    this.result = eval(this.firstNumber + this.operator + this.secondNumber);
+                    // this.result = this.calculateResult(this.firstNumber, this.secondNumber, this.operator);  
+                    this.firstNumber = 0;
+                    this.secondNumber = 0;
+                    this.returnResult = 0;
+                    this.log = this.result
+                    this.operator = '';
+                },
+
+                calculateClear() {
+                    this.result = '';
+                    this.firstNumber = 0;
+                    this.secondNumber = 0;
+                    this.returnResult = 0;
+                    this.returnResult = 0;
+                    this.operator = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
